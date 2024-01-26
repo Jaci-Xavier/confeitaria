@@ -1,9 +1,9 @@
 import { Model, QueryInterface, DataTypes } from 'sequelize';
-import User  from '../../interfaces/User';
+import { Client }  from '../../interfaces/';
 
 export default {
   up(queryInterface: QueryInterface) {
-    return queryInterface.createTable<Model<User>>('users', {
+    return queryInterface.createTable<Model<Client>>('users', {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -14,7 +14,7 @@ export default {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      role: {
+      password: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -23,13 +23,17 @@ export default {
         allowNull: false,
         unique: true,
       },
-      password: {
+      phone: {
         type: DataTypes.STRING,
         allowNull: false,
-      }
+      },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     });
   },
   down(queryInterface: QueryInterface) {
-    return queryInterface.dropTable('users');
+    return queryInterface.dropTable('clients');
   },
 };
