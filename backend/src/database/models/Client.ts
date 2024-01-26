@@ -40,7 +40,7 @@ Client.init({
   },
 }, {
   sequelize: db,
-  modelName: 'users',
+  modelName: 'clients',
   timestamps: false,
   underscored: true,
 });

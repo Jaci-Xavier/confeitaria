@@ -4,7 +4,7 @@ import { Client }  from '../../interfaces/';
 
 export default {
   up(queryInterface: QueryInterface) {
-    return queryInterface.createTable<Model<Client>>('users', {
+    return queryInterface.createTable<Model<Client>>('clients', {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,

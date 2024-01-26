@@ -38,5 +38,3 @@ export default {
     return queryInterface.dropTable('products-sales');
   },
 };
-
-

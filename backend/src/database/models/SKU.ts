@@ -1,5 +1,6 @@
 import { Model, DataTypes, InferAttributes, InferCreationAttributes } from 'sequelize';
 import db from '.';
+import Product from './Product';
 
 class SKU extends Model<InferAttributes<SKU>, InferCreationAttributes<SKU>> {
   declare product_id: number;
@@ -18,9 +19,11 @@ SKU.init({
   },
 }, {
   sequelize: db,
-  modelName: 'skus',
+  modelName: 'sku',
   timestamps: false,
   underscored: true,
 });
+
+SKU.belongsTo(Product, { foreignKey: 'product_id' });
 
 export default SKU;
