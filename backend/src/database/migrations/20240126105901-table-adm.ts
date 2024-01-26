@@ -1,40 +1,30 @@
 import { Model, QueryInterface, DataTypes } from 'sequelize';
-import { Client }  from '../../interfaces/';
-
+import { Adm }  from '../../interfaces/';
 
 export default {
   up(queryInterface: QueryInterface) {
-    return queryInterface.createTable<Model<Client>>('users', {
+    return queryInterface.createTable<Model<Adm>>('adms', {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      username: {
+      email: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       password: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      phone: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      address: {
+      role: {
         type: DataTypes.STRING,
         allowNull: false,
       },
     });
   },
   down(queryInterface: QueryInterface) {
-    return queryInterface.dropTable('clients');
+    return queryInterface.dropTable('adms');
   },
 };
