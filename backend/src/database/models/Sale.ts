@@ -36,4 +36,5 @@ Sale.init({
 
 Sale.belongsTo(Client, { foreignKey: 'client_id' });
 
+
 export default Sale;

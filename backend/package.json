@@ -8,7 +8,7 @@
     "dev": "tsnd --watch \"./src/**\" --transpile-only ./src/server.ts",
     "db:reset": "npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "build": "tsc --project ./tsconfig.json",
-    "prestart": "npx sequelize-cli db:migrate npx sequelize-cli db:seed:all"
+    "prestart": "npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",

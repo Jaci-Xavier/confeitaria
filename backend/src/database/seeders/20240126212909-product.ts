@@ -4,22 +4,34 @@ export default {
   up: async (queryInterface: QueryInterface) => {
     await queryInterface.bulkInsert('products', [
       {
-        name: 'brigadeiro',
-        price: 89.90,
+        name: 'Brigadeiro',
+        price: 100,
         description: 'Cem brigadeiros de chocolate',
-        image: 'https://www.google.com.br/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DLcaOVowHJqk&psig=AOvVaw142Gl7VBaPL3aap_cYLzCM&ust=1706391125309000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCODwtcSA_IMDFQAAAAAdAAAAABAD',
+        image: 'https://www.confeiteiradesucesso.com/wp-content/uploads/2018/06/brigadeirogourmet-belga.jpg',
       },
       {
-        name: 'cajuzinho',
-        price: 84.90,
+        name: 'Cajuzinho',
+        price: 90,
         description: 'Cem cajuzinhos de amendoim',
-        image: 'https://www.google.com.br/url?sa=i&url=https%3A%2F%2Fpt.wikipedia.org%2Fwiki%2FCajuzinho&psig=AOvVaw05C7irCbwWr7Luotw5T_UQ&ust=1706391228403000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNjg0--A_IMDFQAAAAAdAAAAABAD',
+        image: 'https://pt.wikipedia.org/wiki/Cajuzinho#/media/Ficheiro:Cajuzinho.jpg',
       },
       {
-        name: 'pudim',
-        price: 69.90,
+        name: 'Pudim',
+        price: 70,
         description: 'Pudim de leite condensado',
-        image: 'https://www.google.com.br/imgres?imgurl=https%3A%2F%2Fcatracalivre.com.br%2Fwp-content%2Fuploads%2F2020%2F12%2Fpudim-leite-em-po.jpg&tbnid=uR06xWiQaPeCvM&vet=12ahUKEwjcroeUgfyDAxV8T7gEHdioDWwQMygOegUIARCYAQ..i&imgrefurl=https%3A%2F%2Fcatracalivre.com.br%2Freceitas%2Fpudim-de-leite-em-po-pronto-em-20-minutos%2F&docid=buEGax_gcFwGNM&w=900&h=600&itg=1&q=pudim&ved=2ahUKEwjcroeUgfyDAxV8T7gEHdioDWwQMygOegUIARCYAQ',
+        image: 'https://catracalivre.com.br/wp-content/uploads/2020/12/pudim-leite-em-po.jpg',
+      },
+      {
+        name: 'Bolo de aniversário',
+        price: 200,
+        description: 'Bolo de aniversário confeitado de 25 fatias',
+        image: 'https://i.pinimg.com/736x/8f/04/77/8f0477ab919b630b829bddafb0e0c8ee.jpg',
+      },
+      {
+        name: 'Torta salgada',
+        price: 100,
+        description: 'Torta salgada agridoce de frango com ameixa',
+        image: 'https://i.pinimg.com/736x/8f/04/77/8f0477ab919b630b829bddafb0e0c8ee.jpg'
       }
     ], {});
   },
