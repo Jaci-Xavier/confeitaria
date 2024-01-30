@@ -1,10 +1,10 @@
-import { Model, DataTypes, InferAttributes, InferCreationAttributes } from 'sequelize';
+import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
 import db from '.';
 
 class Client extends Model<InferAttributes<Client>, InferCreationAttributes<Client>> {
-  declare id: number;
+  declare id: CreationOptional<string>;
   declare username: string;
-  declare password: string;
+  declare password: CreationOptional<string>;
   declare email: string;
   declare phone: string;
   declare address: string;
