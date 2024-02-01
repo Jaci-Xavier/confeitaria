@@ -5,7 +5,7 @@ export default {
   up(queryInterface: QueryInterface) {
     return queryInterface.createTable<Model<ProductSale>>('products-sales', {
       sale_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
           model: 'sales',
@@ -13,7 +13,7 @@ export default {
         },
       },
       client_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
           model: 'clients',
@@ -21,7 +21,7 @@ export default {
         },
       },
       product_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
           model: 'products',

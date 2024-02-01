@@ -5,13 +5,13 @@ export default {
   up(queryInterface: QueryInterface) {
     return queryInterface.createTable<Model<Sale>>('sales', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
+        defaultValue: DataTypes.UUIDV4,
       },
       client_id:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
           model: 'clients',

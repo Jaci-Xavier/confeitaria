@@ -15,7 +15,7 @@ class ProductService {
       return { status: 500, data: { message: "Erro ao cadastrar produto!" } };
     }
 
-    const id = Number(product?.id);
+    const id = product?.id;
     
     await SKU.create({ product_id: id, quantity });
 

@@ -1,5 +1,5 @@
 export default interface Sale {
-  id: number,
-  client_id: number,
+  id: string,
+  client_id: string,
   value: number,
 }

@@ -1,6 +1,6 @@
 export default interface ProductSale {
-  sale_id: number,
-  client_id: number,
-  product_id: number,
+  sale_id: string,
+  client_id: string,
+  product_id: string,
   quantity: number,
 }

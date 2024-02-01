@@ -1,4 +1,4 @@
 export default interface SKU {
-  product_id: number,
+  product_id: string,
   quantity: number,
 }

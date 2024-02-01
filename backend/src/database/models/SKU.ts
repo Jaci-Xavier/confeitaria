@@ -3,13 +3,13 @@ import db from '.';
 import Product from './Product';
 
 class SKU extends Model<InferAttributes<SKU>, InferCreationAttributes<SKU>> {
-  declare product_id: number;
+  declare product_id: string;
   declare quantity: number;
 }
 
 SKU.init({
   product_id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     allowNull: false,
     primaryKey: true,
   },

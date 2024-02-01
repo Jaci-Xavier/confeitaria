@@ -1,4 +1,5 @@
 import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
 import db from '.';
 
 class Product extends Model<InferAttributes<Product>, InferCreationAttributes<Product>> {
@@ -11,10 +12,10 @@ class Product extends Model<InferAttributes<Product>, InferCreationAttributes<Pr
 
 Product.init({
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     allowNull: false,
     primaryKey: true,
-    autoIncrement: true,
+    defaultValue: uuidv4(),
   },
   name: {
     type: DataTypes.STRING,

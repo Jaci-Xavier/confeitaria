@@ -5,9 +5,9 @@ export default {
   up(queryInterface: QueryInterface) {
     return queryInterface.createTable<Model<Adm>>('adms', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
-        autoIncrement: true,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
       username: {

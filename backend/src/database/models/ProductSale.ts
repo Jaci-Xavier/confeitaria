@@ -5,15 +5,15 @@ import Client from './Client';
 import Sale from './Sale';
 
 class ProductSale extends Model<InferAttributes<ProductSale>, InferCreationAttributes<ProductSale>> {
-  declare sale_id: number;
-  declare client_id: number;
-  declare product_id: number;
+  declare sale_id: string;
+  declare client_id: string;
+  declare product_id: string;
   declare quantity: number;
 }
 
 ProductSale.init({
   sale_id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     allowNull: false,
     references: {
       model: 'sales',
@@ -21,7 +21,7 @@ ProductSale.init({
     },
   },
   client_id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     allowNull: false,
     references: {
       model: 'clients',
@@ -29,7 +29,7 @@ ProductSale.init({
     },
   },
   product_id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     allowNull: false,
     references: {
       model: 'products',

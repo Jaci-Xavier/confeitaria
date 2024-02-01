@@ -1,4 +1,5 @@
 import { Model, QueryInterface, DataTypes } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
 import { Client }  from '../../interfaces/';
 
 
@@ -6,9 +7,9 @@ export default {
   up(queryInterface: QueryInterface) {
     return queryInterface.createTable<Model<Client>>('clients', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
-        autoIncrement: true,
+        defaultValue: uuidv4(),
         primaryKey: true,
       },
       username: {
