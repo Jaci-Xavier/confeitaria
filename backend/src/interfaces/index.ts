@@ -1,4 +1,4 @@
-import Product from './Product';
+import Product from './IProduct';
 import Client from './Client';
 import ProductSale from './ProductSale';
 import Sale from './Sale';

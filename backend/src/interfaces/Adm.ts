@@ -1,6 +1,8 @@
 export default interface Adm {
   id: number,
+  username: string,
+  password?: string,
   email: string,
-  password: string,
+  phone: string,
   role: string,
 }

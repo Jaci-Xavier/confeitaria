@@ -1,5 +1,6 @@
 import express from 'express';
 import LoginRouter from './routes/LoginRoute';
+import ProductRouter from './routes/ProductRoute';
 
 class App {
   public app: express.Express;
@@ -33,6 +34,7 @@ class App {
 
   private routes(): void {
     this.app.use(LoginRouter);
+    this.app.use(ProductRouter);
   }
 }
 

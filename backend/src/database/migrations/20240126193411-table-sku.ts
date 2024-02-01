@@ -3,7 +3,7 @@ import { SKU }  from '../../interfaces';
 
 export default {
   up(queryInterface: QueryInterface) {
-    return queryInterface.createTable<Model<SKU>>('sku', {
+    return queryInterface.createTable<Model<SKU>>('skus', {
       product_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -19,7 +19,7 @@ export default {
     });
   },
   down(queryInterface: QueryInterface) {
-    return queryInterface.dropTable('sku');
+    return queryInterface.dropTable('skus');
   },
 };
 

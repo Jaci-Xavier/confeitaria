@@ -1,8 +1,8 @@
-import { Model, DataTypes, InferAttributes, InferCreationAttributes } from 'sequelize';
+import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
 import db from '.';
 
 class Product extends Model<InferAttributes<Product>, InferCreationAttributes<Product>> {
-  declare id: number;
+  declare id: CreationOptional<string>;
   declare name: string;
   declare price: number;
   declare description: string;
