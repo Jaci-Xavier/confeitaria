@@ -12,8 +12,10 @@ class LoginService {
     if (!client || !bcrypt.compareSync(password, client.password)) {
       return { status: 401, data: { message: 'Email ou senha inválida!' } };
     }
+
+    const payload = {username: client.username}
     
-    const token = Token.create(client.email);
+    const token = Token.create(payload);
 
     return { status: 200, data: { token, message: `bem vindo ${client.username}` } };
   }
@@ -42,8 +44,13 @@ class LoginService {
     if (!client || !bcrypt.compareSync(password, client.password)) {
       return { status: 401, data: { message: 'Email or password incorrect' } };
     }
+
+    const payload = {
+      username: client.username,
+      role: client.role
+    }
     
-    const token = Token.create(client.email);
+    const token = Token.create(payload);
 
     return { status: 200, data: { token } };
   }

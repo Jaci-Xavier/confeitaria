@@ -3,7 +3,7 @@ import * as jwt from 'jsonwebtoken';
 const secret = process.env.JWT_SECRET || 'confeitaria';
 
 class Token {
-  public static create(user: string): string {
+  public static create(user: object): string {
     return jwt.sign(user, secret);
   }
 
