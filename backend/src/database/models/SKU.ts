@@ -25,5 +25,6 @@ SKU.init({
 });
 
 SKU.belongsTo(Product, { foreignKey: 'product_id' });
+Product.hasOne(SKU, { foreignKey: 'product_id' });
 
 export default SKU;

@@ -9,6 +9,20 @@ class ProductController {
 
     return res.status(response.status).json(response.data.message);
   }
+
+  static async getAllProducts(_req: Request, res: Response) {
+    const response = await ProductService.getAllProducts();
+
+    return res.status(response.status).json(response.data);
+  }
+
+  static async getProductById(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const response = await ProductService.getProductById(id);
+
+    return res.status(response.status).json(response.data);
+  }
 }
 
 export default ProductController;

@@ -14,4 +14,7 @@ ProductRouter.post(
   ProductController.createProduct,
   );
 
+ProductRouter.get('/product', ProductController.getAllProducts);
+ProductRouter.get('/product/:id', ProductController.getProductById);
+
 export default ProductRouter;
