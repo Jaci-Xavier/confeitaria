@@ -16,7 +16,9 @@ class LoginController {
 
   static async createClient(req: Request, res: Response): Promise<Response> {
 
-    const response = await loginService.createClient(req.body);
+    const { username, password, email, phone, address } = req.body;
+
+    const response = await loginService.createClient({ username, password, email, phone, address });
 
     return res.status(response.status).json({ message: response.data.message });
   }

@@ -4,23 +4,30 @@ import IResponse from '../interfaces/IResponse';
 import bcrypt from 'bcryptjs';
 import Crypt from '../utils/Crypt';
 import Adm from '../database/models/Adm';
+import User from '../interfaces/Client';
 
 class LoginService {
   public static async login(email: string, password: string): Promise<IResponse>{
+
     const client = await Client.findOne({ where: { email } });
 
     if (!client || !bcrypt.compareSync(password, client.password)) {
       return { status: 401, data: { message: 'Email ou senha inválida!' } };
     }
 
-    const payload = {username: client.username}
+    const payload = {username: client}
     
     const token = Token.create(payload);
 
     return { status: 200, data: { token, message: `bem vindo ${client.username}` } };
   }
 
-  public static async createClient(data: any): Promise<IResponse> {
+  public static async createClient(data: User): Promise<IResponse> {
+    const client = await Client.findOne({ where: { email: data.email } });
+
+    if (client) {
+      return { status: 400, data: { message: 'Email já cadastrado!' } };
+    }
     
     const password = await Crypt.encrypt(data.password);
     
