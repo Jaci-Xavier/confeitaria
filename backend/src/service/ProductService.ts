@@ -51,17 +51,26 @@ class ProductService {
     return { status: 200, data: product };
   }
 
+  public static async updateProduct(id: string, price?: number, quantity?: number) {
+    const product = await Product.findByPk(id);
 
+    if (!product) {
+      return { status: 404, data: { message: "Produto não encontrado!" } };
+    }
 
-  // public static async updatePrice(name: string, price: number) {
-  //   const product = await Product.findAll({ where: { name } });
-    
-  //   if (!product) {
-  //     return { status: 404, data: { message: "Produto não encontrado!" } };
-  //   }
+    const t = await sequelize.transaction();
+    try {
+      await SKU.update({ quantity }, { where: { product_id: id }, transaction: t });
+      await Product.update({ price }, { where: { id }, transaction: t });
 
-  //   await Product.update({ price }, { where: { name } });
-  // }
+      await t.commit();
+
+      return { status: 200, data: { message: "Produto atualizado com sucesso!" } };
+    } catch (error) {
+      await t.rollback();
+      return { status: 500, data: { message: "Erro ao atualizar produto!" } };
+    }
+  }
 }
 
 export default ProductService;

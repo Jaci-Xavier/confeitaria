@@ -23,6 +23,15 @@ class ProductController {
 
     return res.status(response.status).json(response.data);
   }
+
+  static async updateProduct(req: Request, res: Response) {
+    const { id } = req.params;
+    const { price, quantity } = req.body;
+
+    const response = await ProductService.updateProduct(id, price, quantity);
+
+    return res.status(response.status).json(response.data);
+  }
 }
 
 export default ProductController;
