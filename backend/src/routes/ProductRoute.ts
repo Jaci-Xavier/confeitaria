@@ -7,6 +7,7 @@ const ProductRouter = Router();
 
 ProductRouter.post(
   '/product/create',
+  Verify.IsAdmin,
   Verify.Description,
   Verify.Image,
   Verify.Price,
@@ -16,7 +17,7 @@ ProductRouter.post(
 
 ProductRouter.get('/product', ProductController.getAllProducts);
 ProductRouter.get('/product/:id', ProductController.getProductById);
-ProductRouter.patch('/product/:id', Verify.Price, Verify.Quantity, ProductController.updateProduct);
-ProductRouter.delete('/product/:id', ProductController.deleteProduct);
+ProductRouter.patch('/product/:id', Verify.IsAdmin, Verify.Price, Verify.Quantity, ProductController.updateProduct);
+ProductRouter.delete('/product/:id', Verify.IsAdmin, ProductController.deleteProduct);
 
 export default ProductRouter;

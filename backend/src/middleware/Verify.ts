@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import Token from '../utils/Token';
 
 export default class Verify {
   static async Name(req: Request, res: Response, next: NextFunction) {
@@ -83,6 +84,28 @@ export default class Verify {
     if (!quantity) return res.status(400).json({ message: 'É necessário cadastrar a quantidade' });
 
     if (quantity <= 0) return res.status(400).json({ message: 'A quantidade nao pode ser 0' });
+
+    next();
+  }
+
+  static async AuthAdmin(req: Request, res: Response, next: NextFunction) {
+    const token = req.headers.authorization;
+    if (!token) return res.status(401).json({ message: 'Token não encontrado' });
+
+    const response = Token.authenticate(token);
+
+    if (response.status !== 200) return res.status(response.status).json(response.data);
+
+    next();
+  }
+
+  static async IsAdmin(req: Request, res: Response, next: NextFunction) {
+    const token = req.headers.authorization;
+    if (!token) return res.status(401).json({ message: 'Token não encontrado' });
+
+    const response = Token.authenticate(token);
+
+    if (response.status !== 200) return res.status(response.status).json(response.data);
 
     next();
   }

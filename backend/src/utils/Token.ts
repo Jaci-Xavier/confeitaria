@@ -1,4 +1,6 @@
 import * as jwt from 'jsonwebtoken';
+import IUser from '../interfaces/IUser';
+import IResponse from '../interfaces/IResponse';
 
 const secret = process.env.JWT_SECRET || 'confeitaria';
 
@@ -7,12 +9,12 @@ class Token {
     return jwt.sign(user, secret);
   }
 
-  public static authenticate(token: string): object | string {
-    try {
-      return jwt.verify(token, secret);
-    } catch (error) {
-      return 'Token ausente ou inválido';
+  public static authenticate(token: string): IResponse {
+    const decoded = jwt.verify(token, secret) as IUser;
+    if (decoded.role !== 'admin') {
+      return { status: 403, data: { message: 'Acesso negado. Você não é um administrador.' } };
     }
+    return { status: 200, data: { message: 'Acesso permitido' } };
   }
 }
 
