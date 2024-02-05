@@ -32,6 +32,14 @@ class ProductController {
 
     return res.status(response.status).json(response.data);
   }
+
+  static async deleteProduct(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const response = await ProductService.deleteProduct(id);
+
+    return res.status(response.status).json(response.data);
+  }
 }
 
 export default ProductController;

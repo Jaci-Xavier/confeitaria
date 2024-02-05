@@ -14,8 +14,11 @@ class ProductService {
     quantity: number,
   ) {
     const t = await sequelize.transaction();
+
     const lowerCaseName = name.toLowerCase();
+
     const productExists = await Product.findOne({ where: { name } });
+    
     if (productExists?.name.toLowerCase() === lowerCaseName) {
       return { status: 409, data: { message: 'Produto já cadastrado!' } };
     }
@@ -82,6 +85,27 @@ class ProductService {
     } catch (error) {
       await t.rollback();
       return { status: 500, data: { message: 'Erro ao atualizar produto!' } };
+    }
+  }
+
+  public static async deleteProduct(id: string) {
+    const product = await Product.findByPk(id);
+
+    if (!product) {
+      return { status: 404, data: { message: 'Produto não encontrado!' } };
+    }
+
+    const t = await sequelize.transaction();
+    try {
+      await SKU.destroy({ where: { product_id: id }, transaction: t });
+      await Product.destroy({ where: { id }, transaction: t });
+
+      await t.commit();
+
+      return { status: 200, data: { message: 'Produto deletado com sucesso!' } };
+    } catch (error) {
+      await t.rollback();
+      return { status: 500, data: { message: 'Erro ao deletar produto!' } };
     }
   }
 }

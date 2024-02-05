@@ -17,5 +17,6 @@ ProductRouter.post(
 ProductRouter.get('/product', ProductController.getAllProducts);
 ProductRouter.get('/product/:id', ProductController.getProductById);
 ProductRouter.patch('/product/:id', Verify.Price, Verify.Quantity, ProductController.updateProduct);
+ProductRouter.delete('/product/:id', ProductController.deleteProduct);
 
 export default ProductRouter;

@@ -37,6 +37,11 @@ class LoginService {
   }
 
   public static async createAdmin(data: any): Promise<IResponse> {
+    const client = await Adm.findOne({ where: { email: data.email } });
+
+    if (client) {
+      return { status: 400, data: { message: 'Email já cadastrado!' } };
+    }
     
     const password = await Crypt.encrypt(data.password);
     
