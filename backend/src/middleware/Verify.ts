@@ -102,11 +102,17 @@ export default class Verify {
   static async IsAdmin(req: Request, res: Response, next: NextFunction) {
     const token = req.headers.authorization;
     if (!token) return res.status(401).json({ message: 'Token não encontrado' });
-
-    const response = Token.authenticate(token);
-
-    if (response.status !== 200) return res.status(response.status).json(response.data);
-
-    next();
+  
+    try {
+      const response = Token.authenticate(token);
+  
+      if (response.status !== 200) return res.status(response.status).json(response.data);
+  
+      next();
+    } catch (error: any) {
+      console.error('Erro ao verificar token:', error.message);
+      return res.status(500).json({ message: 'Erro interno do servidor' });
+    }
   }
+  
 }

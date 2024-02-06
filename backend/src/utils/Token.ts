@@ -10,12 +10,24 @@ class Token {
   }
 
   public static authenticate(token: string): IResponse {
-    const decoded = jwt.verify(token, secret) as IUser;
-    if (decoded.role !== 'admin') {
-      return { status: 403, data: { message: 'Acesso negado. Você não é um administrador.' } };
+    try {
+      const decoded = jwt.verify(token, secret) as IUser;
+  
+      if (!decoded) {
+        return { status: 401, data: { message: 'Token inválido' } };
+      }
+  
+      if (decoded.role !== 'admin') {
+        return { status: 403, data: { message: 'Acesso negado. Você não é um administrador.' } };
+      }
+  
+      return { status: 200, data: { message: 'Acesso permitido' } };
+    } catch (error: any) {
+      console.error('Erro ao verificar token:', error.message);
+      return { status: 401, data: { message: 'Erro ao verificar o token' } };
     }
-    return { status: 200, data: { message: 'Acesso permitido' } };
   }
+  
 }
 
 export default Token;

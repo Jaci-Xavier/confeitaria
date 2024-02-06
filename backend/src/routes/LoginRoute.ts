@@ -2,7 +2,6 @@ import { Router } from 'express';
 import Verify from '../middleware/Verify';
 
 import LoginController from '../controller/LoginController';
-import { verify } from 'jsonwebtoken';
 
 const LoginRouter = Router();
 
